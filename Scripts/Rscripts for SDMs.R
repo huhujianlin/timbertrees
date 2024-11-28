@@ -1,18 +1,19 @@
-## biomod2 scripts for Species Distribution Models SDMs£©. 
-##This script framework adopts the methodology outlined in Ghislain Vieilledent and Mario Tagliari's R scripts and reconstructs the R scripts for ## SDMs as needed.
+## biomod2 script for Species Distribution Models SDMs. 
+##This script framework adopts the methodology outlined in the R scripts of Ghislain Vieilledent and Mario Tagliari, and reconstructs these R scripts as needed for the current study.
 ## 
-##
-## The original citation of this script:
+## The original citation information of this script:
 # ==============================================================================
 # authors         :Ghislain Vieilledent / Mario Tagliari
 # email           :ghislain.vieilledent@cirad.fr / mario_tagliari@hotmail.com
 # license         :GPLv3
+#
+#Tagliari M. M., Danthu P., Leong Pock Tsy J. M., et al., 2021. Not all species will migrate poleward as the climate warms: The case of the seven baobab species in Madagascar. Global Change Biol. 27, 6071â€“6085. https://www.ncbi.nlm.nih.gov/pubmed/34418236.
 # ==============================================================================
-#Tagliari M. M., Danthu P., Leong Pock Tsy J. M., et al., 2021. Not all species will migrate poleward as the climate warms: The case of the seven baobab species in Madagascar. Global Change Biol. 27, 6071¨C6085. https://www.ncbi.nlm.nih.gov/pubmed/34418236.
 #
-#
-#
-#
+## The citation of this script:
+#Hu, J. L., Ci, X. Q., Zhang, X. Y., Zhou, R., Xiao J. H., Liu, Z. F., Zhang C. Y., Jin, X., Li, J., 2024. Assessment of multidimensional diversity and conservation of threatened timber trees in China under climate change. Biol. Conserv. 300, 110871. https://doi.org/10.1016/j.biocon.2024.110871.
+##
+##
 
 setwd("D:/data_biomod2") 
 
@@ -198,12 +199,6 @@ biomod2_wrapper <- function(sp){
       VarImport = 0
     )
    
-  ## Calculate variable importance
-  VarImp <- as.data.frame(get_variables_importance(sp_model))
-  Rank <- as.data.frame(apply(-VarImp,2,rank))
-  VarImp$mean.rank <- apply(Rank,1,mean)
-  VarImp$rank <- rank(VarImp$mean.rank,ties.method="max")
-  write.table(VarImp,paste0(sp,"_varimp.txt"),sep="\t")
   
   ## do projections
   proj_scen <- c("current","ssp126","ssp245","ssp370","ssp585")
